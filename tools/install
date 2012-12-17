@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#CF_S="/usr/local/bin/cf-sketch --expert --installsource https://raw.github.com/ahdinosaur/design-center/master/sketches/cfsketches --installtarget $HOME/.cfagent/inputs/sketches --actfile $HOME/.cf-sketch/activations.conf --runfile $HOME/.cfagent/inputs/cf-sketch-runfile.cf"
+CF_S="/usr/local/bin/cf-sketch --expert --installsource https://raw.github.com/ahdinosaur/design-center/master/sketches/cfsketches"
+
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "disactivating any existing cf-sketch params"
+echo "$CF_S --deactivateall"
+$CF_S --deactivateall
+
+echo "finding out what sketches we need to install"
+TO_INSTALL=
+for FILE in $(find "$DIR/../params/" -name *.json)
+do
+  FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
+
+  NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
+  NAMESPACE="$(echo ${NAMESPACE/\//::/})"
+
+  SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
+
+  TO_INSTALL="$(echo "$NAMESPACE::$SKETCH
+$TO_INSTALL" | sort | uniq | egrep -v "^[ ]*$|^#")"
+done
+echo "looks like we need to install:
+$TO_INSTALL"
+for SKETCH in $TO_INSTALL; do
+  echo "$CF_S --install $SKETCH"
+  $CF_S --install $SKETCH
+done

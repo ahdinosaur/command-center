@@ -1,0 +1,1 @@
+/var/cfengine/bin/cf-agent -f $HOME/.cfagent/inputs/standalone-cf-sketch-runfile.cf

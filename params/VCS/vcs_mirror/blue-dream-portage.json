@@ -1,0 +1,12 @@
+{
+    "VCS::vcs_mirror":
+    {
+        "activated": true,
+        "path": "/etc/portage",
+        "origin":"https://github.com/ahdinosaur/blue-dream-portage.git",
+        "branch": "master",
+        "vcs": "/usr/bin/git",
+        "nowipe": true,
+        "runas": "root"
+    }
+}

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+CF_S="/usr/local/bin/cf-sketch --expert --installsource https://raw.github.com/ahdinosaur/design-center/master/sketches/cfsketches"
+
+
+
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+echo "disactivating any existing cf-sketch params"
+echo "$CF_S --deactivateall"
+$CF_S --deactivateall
+
+for FILE in $(find "$DIR/../params/" -name *.json)
+do
+  FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
+  echo "full name: $FULL_NAME"
+  NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
+  NAMESPACE="$(echo ${NAMESPACE/\//::/})"
+  #echo "namespace: $NAMESPACE"
+  SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
+  #echo "sketch name: $SKETCH"
+  PARAM="$(echo $FULL_NAME | rev | cut -d/ -f1 | rev )"
+  #echo "sketch name: $PARAM"
+
+  # normalize path
+  FILE=$(readlink -f $FILE)
+  echo "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
+  /bin/sh -c "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
+done

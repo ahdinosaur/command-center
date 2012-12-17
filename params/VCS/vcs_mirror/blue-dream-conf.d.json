@@ -1,0 +1,12 @@
+{
+    "VCS::vcs_mirror":
+    {
+        "activated": true,
+        "path": "/etc/conf.d",
+        "origin":"https://github.com/ahdinosaur/blue-dream-conf.d.git",
+        "branch": "master",
+        "vcs": "/usr/bin/git",
+        "nowipe": true,
+        "runas": "root"
+    }
+}

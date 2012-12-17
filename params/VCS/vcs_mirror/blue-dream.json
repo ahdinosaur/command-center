@@ -1,0 +1,12 @@
+{
+    "VCS::vcs_mirror":
+    {
+        "activated": true,
+        "path": "/var/cfengine/masterfiles",
+        "origin":"https://github.com/ahdinosaur/blue-dream.git",
+        "branch": "master",
+        "vcs": "/usr/bin/git",
+        "nowipe": true,
+        "runas": "root"
+    }
+}

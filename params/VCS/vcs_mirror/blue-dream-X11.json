@@ -1,0 +1,12 @@
+{
+    "VCS::vcs_mirror":
+    {
+        "activated": true,
+        "path": "/etc/X11",
+        "origin":"https://github.com/ahdinosaur/blue-dream-X11.git",
+        "branch": "master",
+        "vcs": "/usr/bin/git",
+        "nowipe": true,
+        "runas": "root"
+    }
+}
