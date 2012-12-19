@@ -1,7 +1,7 @@
 {
     "System::tzconfig":
     {
-        "timezone": "America/Pacific",
+        "timezone": "America/Los_Angeles",
         "zoneinfo": "/usr/share/zoneinfo",
     }
 }
