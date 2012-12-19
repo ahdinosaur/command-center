@@ -1,0 +1,8 @@
+{
+    "System::openrc":
+    {
+        "activated" : true,
+        "service": "syslog-ng",
+        "runlevel": "default",
+    }
+}

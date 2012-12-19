@@ -1,0 +1,7 @@
+{
+    "System::set_hostname":
+    {
+        "hostname": "blue-dream",
+	"domainname": "emerald-triangle",
+    }
+}

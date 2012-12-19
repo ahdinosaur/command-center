@@ -1,0 +1,8 @@
+{
+    "System::openrc":
+    {
+        "activated" : true,
+        "service": "xdm",
+        "runlevel": "default",
+    }
+}
