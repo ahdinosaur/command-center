@@ -1,13 +1,14 @@
 {
     "System::etc_hosts":
     {
-        "hostfile": "/etc/hosts"
-        "hosts": {
+        "hostfile": "/etc/hosts",
+        "hosts":
+	{
 	    "192.168.42.1": "banana-kush banana-kush.emerald-triangle", 
 	    "192.168.42.2": "pineapple-express pineapple-express.emerald-triangle",
 	    "192.168.42.3": "blue-dream blue-dream.emerald-triangle",
 	    "192.168.42.4": "beagle beagle.emerald-triangle",
-	}
+	},
         "defined_only": "any",
     }
 }
