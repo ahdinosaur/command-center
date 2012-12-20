@@ -16,7 +16,7 @@ do
   FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
   echo "full name: $FULL_NAME"
   NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
-  NAMESPACE="$(echo ${NAMESPACE/\//::/})"
+  NAMESPACE="$(echo ${NAMESPACE//\//::})"
   #echo "namespace: $NAMESPACE"
   SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
   #echo "sketch name: $SKETCH"
