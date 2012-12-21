@@ -1,0 +1,14 @@
+{
+    "Packages::Generic::add":
+    {
+        "activated" : true,
+	"packages" : [
+	    "dev-perl/Term-ReadLine-Gnu",
+	    "dev-lang/lua",
+	    "dev-lua/luarocks",
+	    "dev-vcs/gitflow",
+	    "mail-client/mutt",
+	    "net-irc/irssi",
+		]
+    }
+}

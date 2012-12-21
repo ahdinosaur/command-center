@@ -1,0 +1,10 @@
+{
+    "Packages::Generic::add":
+    {
+        "activated" : true,
+	"packages" : [
+	    "sys-kernel/xfsprogs",
+	    "sys-apps/gptfdisk"
+		]
+    }
+}

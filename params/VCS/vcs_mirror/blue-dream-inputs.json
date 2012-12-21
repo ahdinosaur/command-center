@@ -2,7 +2,7 @@
     "VCS::vcs_mirror":
     {
         "activated": true,
-        "path": "/var/cfengine/masterfiles",
+        "path": "/var/cfengine/inputs",
         "origin":"https://github.com/ahdinosaur/blue-dream-masterfiles.git",
         "branch": "master",
         "vcs": "/usr/bin/git",

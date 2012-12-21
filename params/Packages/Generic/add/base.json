@@ -1,0 +1,12 @@
+{
+    "Packages::Generic::add":
+    {
+        "activated" : true,
+	"packages" : [
+            "net-misc/ntp",
+	    "net-misc/openssh",
+	    "sys-apps/pciutils",
+            "sys-apps/portage"
+		]
+    }
+}

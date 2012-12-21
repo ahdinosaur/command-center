@@ -1,0 +1,12 @@
+{
+    "Packages::Generic::add":
+    {
+        "activated" : true,
+	"packages" : [
+	    "media-plugins/gst-plugins-alsa",
+	    "media-sound/gst-plugins-alsa",
+	    "media-sound/alsa-headers",
+	    "media-sound/alsa-utils",
+		]
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "Packages::Generic::add":
+    {
+        "activated" : true,
+	"packages" : [
+            "sys-boot/grub"
+		]
+    }
+}

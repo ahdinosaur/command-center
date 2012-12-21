@@ -1,0 +1,11 @@
+{
+    "CFEngine::sketch_template":
+    {
+        "activated" : true,
+	"file" : "/etc/conf.d/modules",
+        "config":
+        {
+		"modules" : "nvidia"
+        }
+    }
+}

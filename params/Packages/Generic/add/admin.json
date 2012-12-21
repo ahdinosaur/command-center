@@ -1,0 +1,17 @@
+{
+    "Packages::Generic::add":
+    {
+        "activated" : true,
+	"packages" : [
+	    "app-admin/sudo",
+	    "app-admin/syslog-ng",
+	    "app-editors/vim",
+	    "app-misc/mc",
+	    "app-misc/tmux",
+            "app-shells/zsh",
+	    "dev-vcs/git",
+	    "net-analyzer/nmap",
+	    "sys-process/htop"
+		    ]
+    }
+}
