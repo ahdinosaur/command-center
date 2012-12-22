@@ -1,1 +1,1 @@
-/var/cfengine/bin/cf-agent -vf /var/cfengine/masterfiles/standalone-cf-sketch-runfile.cf
+/var/cfengine/bin/cf-agent -vf /var/cfengine/masterfiles/cf-sketch-runfile.cf

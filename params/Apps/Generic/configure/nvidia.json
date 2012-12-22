@@ -1,11 +1,11 @@
 {
-    "CFEngine::sketch_template":
+    "Apps::Generic::configure":
     {
         "activated" : true,
 	"file" : "/etc/conf.d/modules",
         "config":
         {
-		"modules" : "nvidia"
+		"modules" : "\\\"nvidia\\\""
         }
     }
 }

@@ -11,7 +11,7 @@
 	    "app-text/zathura-pdf-poppler",
 	    "www-client/firefox",
 	    "www-plugins/adobe-flash",
-	    "x11-apps/xkbmap",
+	    "x11-apps/setxkbmap",
 	    "x11-apps/xinit",
 	    "x11-base/xorg-server",
 	    "x11-misc/slim",

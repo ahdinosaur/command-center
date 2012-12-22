@@ -6,22 +6,27 @@ CF_S="/usr/local/bin/cf-sketch --expert --installsource https://raw.github.com/a
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "finding out what sketches we need to install"
 TO_INSTALL=
-for FILE in $(find "$DIR/../params/" -name *.json)
-do
-  FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
+if [ $# -eq 0 ]; then
+  echo "install sketches with params"
+  for FILE in $(find "$DIR/../params/" -name *.json)
+  do
+    FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
 
-  NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
-  NAMESPACE="$(echo ${NAMESPACE//\//::})"
+    NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
+    NAMESPACE="$(echo ${NAMESPACE//\//::})"
 
-  SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
+    SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
 
-  TO_INSTALL="$(echo "$NAMESPACE::$SKETCH
-$TO_INSTALL" | sort | uniq | egrep -v "^[ ]*$|^#")"
-done
-echo "looks like we need to install:
-$TO_INSTALL"
+    TO_INSTALL="$(echo "$NAMESPACE::$SKETCH
+  $TO_INSTALL" | sort | uniq | egrep -v "^[ ]*$|^#")"
+  echo "looks like we need to install:
+  $TO_INSTALL"
+  done
+else
+  TO_INSTALL="$@"
+fi
+
 for SKETCH in $TO_INSTALL; do
   echo "$CF_S --install $SKETCH"
   $CF_S --install $SKETCH

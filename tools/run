@@ -5,5 +5,5 @@ CF_S="/usr/local/bin/cf-sketch --expert --installsource https://raw.github.com/a
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-$CF_S --generate
+$CF_S --generate --no-standalone
 

@@ -4,6 +4,9 @@
         "activated" : true,
 	"packages" : [
             "net-misc/cfengine",
+	    "net-analyzer/nagios",
+	    "www-servers/apache2",
+	    "dev-lang/php"
 		]
     }
 }

@@ -3,10 +3,10 @@
     {
         "activated" : true,
 	"packages" : [
+	    "media-libs/alsa-lib",
 	    "media-plugins/gst-plugins-alsa",
-	    "media-sound/gst-plugins-alsa",
 	    "media-sound/alsa-headers",
-	    "media-sound/alsa-utils",
+	    "media-sound/alsa-utils"
 		]
     }
 }

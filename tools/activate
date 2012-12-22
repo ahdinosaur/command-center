@@ -2,29 +2,56 @@
 
 CF_S="/usr/local/bin/cf-sketch --expert --installsource https://raw.github.com/ahdinosaur/design-center/master/sketches/cfsketches"
 
-
-
-
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-echo "disactivating any existing cf-sketch params"
-echo "$CF_S --deactivateall"
-$CF_S --deactivateall
+if [ $# -eq 0 ]; then
 
-for FILE in $(find "$DIR/../params/" -name *.json)
-do
-  FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
-  echo "full name: $FULL_NAME"
-  NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
-  NAMESPACE="$(echo ${NAMESPACE//\//::})"
-  #echo "namespace: $NAMESPACE"
-  SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
-  #echo "sketch name: $SKETCH"
-  PARAM="$(echo $FULL_NAME | rev | cut -d/ -f1 | rev )"
-  #echo "sketch name: $PARAM"
+  echo "deactivating any existing cf-sketch params"
+  echo "$CF_S --deactivateall"
+  $CF_S --deactivateall
 
-  # normalize path
-  FILE=$(readlink -f $FILE)
-  echo "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
-  /bin/sh -c "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
-done
+  echo "activating all available cf-sketch params"
+  for FILE in $(find "$DIR/../params/" -name *.json)
+  do
+    FULL_NAME="$(echo ${FILE//\/params\// } | cut -d' ' -f2)"
+    echo "activating: $FULL_NAME"
+    NAMESPACE="$(echo ${FULL_NAME%\/*\/*})"
+    NAMESPACE="$(echo ${NAMESPACE//\//::})"
+    #echo "namespace: $NAMESPACE"
+    SKETCH="$(echo $FULL_NAME | rev | cut -d/ -f2 | rev )"
+    #echo "sketch name: $SKETCH"
+    PARAM="$(echo $FULL_NAME | rev | cut -d/ -f1 | rev )"
+    #echo "sketch name: $PARAM"
+
+    # normalize path
+    FILE=$(readlink -f $FILE)
+    #echo "param file $FILE"
+
+    echo "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
+    /bin/sh -c "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
+  done
+else
+# if given arguments, it is what sketches to activate params for
+
+
+  for NAMESPACE_SKETCH in "$@"; do
+    echo "deactivating $NAMESPACE_SKETCH cf-sketch params"
+    echo "$CF_S --deactivate $NAMESPACE_SKETCH"
+    $CF_S --deactivate "$NAMESPACE_SKETCH"
+
+    echo "activating $NAMESPACE_SKETCH cf-sketch params"
+    for FILE in $(find "$DIR/../params/${NAMESPACE_SKETCH//:://}" -name *.json); do
+      NAMESPACE="$(echo ${NAMESPACE_SKETCH%::*})"
+      #echo "namespace: $NAMESPACE"
+      SKETCH="$(echo ${NAMESPACE_SKETCH##*::})"
+      #echo "sketch name: $SKETCH"
+      
+      # normalize path
+      FILE=$(readlink -f $FILE)
+      #echo "param file $FILE"
+      
+      echo "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
+      /bin/sh -c "$CF_S -a $NAMESPACE::$SKETCH=$FILE"
+    done
+  done
+fi
