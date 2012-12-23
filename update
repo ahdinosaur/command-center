@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [[ $EUID -ne 0 ]]; then
+  echo "TODO"
+else
+  cd /var/cfengine/masterfiles
+  git pull -u origin master
+  cf-agent --bootstrap
+  cf-agent -vK
+fi
